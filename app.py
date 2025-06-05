@@ -5,7 +5,7 @@ import torch
 app = Flask(__name__)
 
 # Load chatbot model from Hugging Face (free)
-model_name = "mistralai/Mistral-7B-Instruct-v0.1"
+model_name = "gpt2"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16, device_map="auto")
 
