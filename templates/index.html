@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Free Chatbot</title>
+  <script>
+    async function sendMessage() {
+      const input = document.getElementById("user_input").value;
+      const res = await fetch("/chat", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message: input})
+      });
+      const data = await res.json();
+      document.getElementById("chat").innerHTML += `<p><b>You:</b> ${input}</p>`;
+      document.getElementById("chat").innerHTML += `<p><b>Bot:</b> ${data.reply}</p>`;
+      document.getElementById("user_input").value = "";
+    }
+  </script>
+</head>
+<body>
+  <h1>Chat with Free AI</h1>
+  <div id="chat" style="border:1px solid black;height:300px;padding:10px;overflow:auto;"></div>
+  <input id="user_input" type="text" placeholder="Type message..." />
+  <button onclick="sendMessage()">Send</button>
+</body>
+</html>
